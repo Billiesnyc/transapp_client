@@ -7,7 +7,8 @@ import Home from './Components/Home'
 class App extends Component {
 
   state = {
-    user: null
+    user: null,
+    businesses: []
   }
 
   login = (user) => {
@@ -35,6 +36,8 @@ class App extends Component {
       .catch(error => {
         this.props.history.push('/home')
       })
+     API.getBusinesses()
+      .then(data => this.setState({ businesses: data })) 
     } 
   }
 
@@ -53,7 +56,7 @@ class App extends Component {
   render() {
     
     const { handleSubmit, handleSignup, signout } = this
-    const { user } = this.state
+    const { user, businesses } = this.state
 
     return (
       <div className="App container">
@@ -74,7 +77,8 @@ class App extends Component {
         <Route path='/home' 
           render={props => 
             <Home {...props} 
-              handleSubmit={handleSubmit} 
+              handleSubmit={handleSubmit}
+              businesses={businesses} 
             />} 
         />
       </div>
