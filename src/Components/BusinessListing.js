@@ -7,7 +7,9 @@ class BusinessListing extends Component {
         const { business, selectBusiness } = this.props
         return(
             <div onClick={() => selectBusiness(business)}>
-                {business.name} - {business.city}, {business.state}, {business.country}
+                <a href="#" className="list-group-item list-group-item-action">
+                    {business.name} - {business.city}, {business.state}, {business.country}
+                </a>
             </div>
             )
         }

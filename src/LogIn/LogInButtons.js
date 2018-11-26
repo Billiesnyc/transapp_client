@@ -11,7 +11,8 @@ class LoginButtons extends React.Component {
     const { handleSubmit, handleSignup, signout, user } = this.props
     return(
         <div>
-          {!user ?  
+          {!user ? 
+           
           <div>
            
             <Link to="/login">
@@ -20,9 +21,7 @@ class LoginButtons extends React.Component {
             <Link to="/signup">
               <button className="btn btn-info">Sign up</button>
             </Link>
-            <Route exact path='/login' render={props => <LoginForm {...props} handleSubmit={handleSubmit} />} />
-            <Route exact path='/signup' render={props => <SignupForm {...props} handleSignup={handleSignup} />} />
-            
+           
           </div>
           :
           <div>

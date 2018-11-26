@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+    import React, { Component } from 'react';
 
 
 class ReviewItem extends Component {
@@ -7,7 +7,7 @@ class ReviewItem extends Component {
         const { review } = this.props
         return(
             <div>
-                {review.review_text} | {review.up ? "+1" : "-1"} | {review.gender}
+                {review.review_text} | {review.up ? <i class="material-icons green">thumb_up</i> : <i class="material-icons red">thumb_down</i>} | {review.gender}
             </div>
             )
         }

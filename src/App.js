@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import { Route, withRouter } from 'react-router-dom'
+import { Route, withRouter, Link } from 'react-router-dom'
 import API from './Components/API'
-import LoginButtons from './LogIn/LogInButtons'
+import LoginForm from './LogIn/LoginForm'
+import SignupForm from './LogIn/SignupForm'
+import Navbar from './Components/Navbar/Navbar'
 import Home from './Components/Home'
+
 
 class App extends Component {
 
   state = {
     user: null,
-    businesses: []
+    businesses: [],
+    filteredBusinesses: []
   }
 
   login = (user) => {
@@ -26,6 +30,19 @@ class App extends Component {
     localStorage.removeItem('token')
     this.setState({ user: null })
     this.props.history.push('/home')
+  }
+
+  filterBusinesses = (prop, filterName) => {
+    if (filterName === 'category') {
+    let filteredBusinesses = this.state.businesses.filter(business => business.category === prop)
+    this.setState({ filteredBusinesses })}
+    else if (filterName === 'city') {
+      let filteredBusinesses = this.state.businesses.filter(business => business.city === prop)
+    this.setState({ filteredBusinesses })}
+    }
+  
+  clearFilters = () => {
+    this.setState({ filteredBusinesses: [] })
   }
 
   componentDidMount() {
@@ -55,30 +72,30 @@ class App extends Component {
 
   render() {
     
-    const { handleSubmit, handleSignup, signout } = this
-    const { user, businesses } = this.state
+    const { handleSubmit, handleSignup, signout, filterBusinesses, clearFilters } = this
+    const { user, businesses, filteredBusinesses } = this.state
 
     return (
       <div className="App container">
         <header>
-          <div className="row">
-            <div className="col-6">
-            </div>
-            <div className="col-6 text-right">
-              <LoginButtons 
-                handleSubmit={handleSubmit} 
-                handleSignup={handleSignup} 
-                signout={signout} 
-                user={user}
-               />
-            </div>
-          </div>
+        <Navbar handleSubmit={handleSubmit} 
+            handleSignup={handleSignup} 
+            signout={signout} 
+            user={user} 
+            filterBusinesses={filterBusinesses}
+            clearFilters={clearFilters}
+        />
         </header>
+       
+        <Route exact path='/login' render={props => <LoginForm {...props} handleSubmit={handleSubmit} />} />
+        <Route exact path='/signup' render={props => <SignupForm {...props} handleSignup={handleSignup} />} />
+        
         <Route path='/home' 
           render={props => 
             <Home {...props} 
               handleSubmit={handleSubmit}
-              businesses={businesses} 
+              filteredBusinesses={filteredBusinesses} 
+              businesses={businesses}
             />} 
         />
       </div>
