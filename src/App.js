@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Route, withRouter, Link } from 'react-router-dom'
+import { Route, withRouter } from 'react-router-dom'
 import API from './Components/API'
 import LoginForm from './LogIn/LoginForm'
 import SignupForm from './LogIn/SignupForm'
+import New from './Components/New/New'
 import Navbar from './Components/Navbar/Navbar'
 import Home from './Components/Home'
 
@@ -23,6 +24,8 @@ class App extends Component {
       localStorage.setItem('token', user.token)
       this.setState({ user: user})
       this.props.history.push('/home')
+      API.getBusinesses()
+      .then(data => this.setState({ businesses: data })) 
     } 
   }
 
@@ -42,7 +45,7 @@ class App extends Component {
     }
   
   clearFilters = () => {
-    this.setState({ filteredBusinesses: [] })
+    this.setState({ filteredBusinesses: this.state.businesses })
   }
 
   componentDidMount() {
@@ -83,12 +86,12 @@ class App extends Component {
             signout={signout} 
             user={user} 
             filterBusinesses={filterBusinesses}
-            clearFilters={clearFilters}
         />
         </header>
        
         <Route exact path='/login' render={props => <LoginForm {...props} handleSubmit={handleSubmit} />} />
         <Route exact path='/signup' render={props => <SignupForm {...props} handleSignup={handleSignup} />} />
+        <Route exact path='/new' render={props => <New {...props} user={user} />} />
         
         <Route path='/home' 
           render={props => 
@@ -96,6 +99,8 @@ class App extends Component {
               handleSubmit={handleSubmit}
               filteredBusinesses={filteredBusinesses} 
               businesses={businesses}
+              clearFilters={clearFilters}
+              filterBusinesses={filterBusinesses}
             />} 
         />
       </div>

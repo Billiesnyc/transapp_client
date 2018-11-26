@@ -1,14 +1,12 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
-import LoginForm from './LoginForm'
-import SignupForm from './SignupForm'
+import { Link } from 'react-router-dom'
 
 
 class LoginButtons extends React.Component {
  
 
   render () {
-    const { handleSubmit, handleSignup, signout, user } = this.props
+    const { signout, user } = this.props
     return(
         <div>
           {!user ? 
