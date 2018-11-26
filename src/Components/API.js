@@ -3,6 +3,8 @@ class API {
      
       this.baseUrl = 'http://localhost:3000'
       this.businessURL = 'http://localhost:3000/businesses'
+      this.citiesURL = this.baseUrl + '/cities'
+      this.categoriesURL = this.baseUrl + '/categories'
       this.loginUrl = this.baseUrl + '/login'
       this.signupUrl = this.baseUrl + '/signup'
       this.validateUrl = this.baseUrl + '/validate'
@@ -52,7 +54,13 @@ class API {
       return this.get(this.businessURL + '/' + id)
     }
 
+    static getCities(){
+      return this.get(this.citiesURL)
+    }
 
+    static getCategories(){
+      return this.get(this.categoriesURL)
+    }
   
   } 
   

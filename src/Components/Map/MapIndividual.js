@@ -13,7 +13,7 @@ class MapIndividual extends React.Component {
   render () {
 
     return (
-        <div style={{ height: '50vh', width: '50%' }}>
+        <div style={{ height: '50vh', width: '100%' }}>
          <GoogleMapReact
           bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY }}
           defaultCenter={{"lat": this.props.lat, "lng": this.props.long}}

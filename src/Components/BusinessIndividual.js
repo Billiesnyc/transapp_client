@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import API from './API'
 import ReviewItem from './ReviewItem'
 import MapIndividual from './Map/MapIndividual'
-
+import '../style.css'
 class BusinessIndividual extends Component {
 
     state = {
@@ -28,14 +28,26 @@ class BusinessIndividual extends Component {
         const { showReviews } = this
         const { score } = this.state
         return(
-            <div>
-                <button onClick={deselectBusiness}>Back</button><br />
-                {business.name} - {business.city}, {business.state}, {business.country}<br />
-                {business.category} {business.subcategory}
-                {score.overall_up} + | {score.overall_down} -
+            <div className="container p-4">
+            <div className="row">
+                <div className="col-8">
+                <button className="btn btn-outline-info" onClick={deselectBusiness}>Back</button><br /><br />
+                <h1>{business.name}</h1>
+                <p>Location: {business.city}, {business.state}, {business.country}</p>
+                <p>Category: {business.category} {business.subcategory}</p>
+                <p>Rating: {score.overall_up} <i class="material-icons green">thumb_up</i>| {score.overall_down} <i class="material-icons red">thumb_down</i></p>
+                </div>
+                <div className="col-4">
                 <MapIndividual lat={Number(business.latitude)} long={Number(business.longitude)} place={business.places_id} />
+                </div>
+                </div>
+            <div className="row">
+                <div className="col">
                 <h1>Reviews</h1>
                 {showReviews()}
+                </div>
+            
+            </div>
             </div>
             )
         }

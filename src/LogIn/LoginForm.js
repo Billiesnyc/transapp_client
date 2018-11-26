@@ -19,11 +19,11 @@ class LoginForm extends React.Component {
           <label className="grey-text" margin='normal'> Email</label>
           <input id='emailInput' value={email} name='email' className="form-control" 
             onChange={handleChange} />  
-        <br/>
+   
           <label className="grey-text" margin='normal'> Password</label>
           <input id='passwordInput' value={password} type='password' name='password' className="form-control"  
             onChange={handleChange} />
-        <br/>
+  
         <button variant='contained' type='submit' className="btn btn-info" onClick={e => {
           e.preventDefault()
           handleSubmit(email, password)
