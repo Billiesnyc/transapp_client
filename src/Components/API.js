@@ -3,6 +3,7 @@ class API {
      
       this.baseUrl = 'http://localhost:3000'
       this.businessURL = 'http://localhost:3000/businesses'
+      this.reviewURL = 'http://localhost:3000/reviews'
       this.citiesURL = this.baseUrl + '/cities'
       this.categoriesURL = this.baseUrl + '/categories'
       this.loginUrl = this.baseUrl + '/login'
@@ -60,6 +61,26 @@ class API {
 
     static getCategories(){
       return this.get(this.categoriesURL)
+    }
+
+    static createReview (latitude, longitude, name, places_id, category, city, state, country, review, up, user_id) {
+      return fetch(this.businessURL, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify({
+          latitude, 
+          longitude,
+          name,
+          places_id,
+          category,
+          city,
+          state,
+          country, 
+          review, 
+          up,
+          user_id
+        })
+      }).then(resp => resp.json())
     }
   
   } 

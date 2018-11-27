@@ -13,7 +13,8 @@ class App extends Component {
   state = {
     user: null,
     businesses: [],
-    filteredBusinesses: []
+    filteredBusinesses: [],
+    
   }
 
   login = (user) => {

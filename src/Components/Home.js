@@ -37,7 +37,7 @@ class Home extends React.Component {
 
   render () {
     const { selectedBusiness } = this.state
-    const { deselectBusiness } = this
+    const { deselectBusiness, selectBusiness } = this
     const { clearFilters, filterBusinesses } = this.props
     return (
         <div>
