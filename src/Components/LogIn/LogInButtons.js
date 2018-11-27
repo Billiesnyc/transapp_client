@@ -14,17 +14,17 @@ class LoginButtons extends React.Component {
           <div>
            
             <Link to="/login">
-              <button className="btn btn-info">Log in</button>
+              <button className="btn blue-button">Log in</button>
             </Link>
             <Link to="/signup">
-              <button className="btn btn-info">Sign up</button>
+              <button className="btn blue-button">Sign up</button>
             </Link>
            
           </div>
           :
           <div>
             <span className="pr-3">Welcome, {user.email} </span>
-            <input type="button" className="btn btn-info" value="Log Out" onClick={signout}/>
+            <input type="button" className="btn blue-button" value="Log Out" onClick={signout}/>
           </div>
           }
    

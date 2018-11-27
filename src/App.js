@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom'
 import API from './Components/API'
-import LoginForm from './LogIn/LoginForm'
-import SignupForm from './LogIn/SignupForm'
+import LoginForm from './Components/LogIn/LoginForm'
+import SignupForm from './Components/LogIn/SignupForm'
 import New from './Components/New/New'
 import Navbar from './Components/Navbar/Navbar'
 import Home from './Components/Home'
@@ -102,6 +102,7 @@ class App extends Component {
               businesses={businesses}
               clearFilters={clearFilters}
               filterBusinesses={filterBusinesses}
+              user={user}
             />} 
         />
       </div>

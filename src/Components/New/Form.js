@@ -1,6 +1,6 @@
 import React from 'react'
 import API from '../API'
-import BusinessIndividual from '../BusinessIndividual'
+import BusinessIndividual from '../Business/BusinessIndividual'
 
 class Form extends React.Component {
 
@@ -62,7 +62,8 @@ class Form extends React.Component {
             <label htmlFor="Review">Overall experience</label><br />
             <i className="material-icons green mr-1 add-review" onClick={thumbUp}>thumb_up</i> <i className="material-icons red add-review" onClick={thumbDown}>thumb_down</i>
             </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn blue-button">Submit</button>
+            
         </form>
        </div>}
        </>
