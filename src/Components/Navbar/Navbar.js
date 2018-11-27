@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import LoginButtons from '../../LogIn/LogInButtons';
+import LoginButtons from '../LogIn/LogInButtons';
 
 
 class Navbar extends React.Component {
@@ -13,7 +13,7 @@ class Navbar extends React.Component {
 
     return (
         <div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light main-nav-pink">
         <Link to="/home" className="navbar-brand">
         Affirm</Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

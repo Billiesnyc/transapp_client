@@ -11,8 +11,8 @@ class Confirmation extends React.Component {
     return (
        <div>
         <h3>Add a review for {name}?</h3>
-        <button className="btn btn-info mr-2" onClick={addReview}>Yes</button> 
-        <button className="btn btn-info" onClick={cancelReview}>No</button> 
+        <button className="btn blue-button mr-2" onClick={addReview}>Yes</button> 
+        <button className="btn blue-button" onClick={cancelReview}>No</button> 
        </div>
     )
   }

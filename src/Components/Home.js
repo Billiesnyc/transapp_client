@@ -1,6 +1,6 @@
 import React from 'react'
 import BusinessListing from './BusinessListing'
-import BusinessIndividual from './BusinessIndividual'
+import BusinessIndividual from './Business/BusinessIndividual'
 import FilterNav from './Navbar/FilterNav'
 class Home extends React.Component {
 
@@ -37,13 +37,13 @@ class Home extends React.Component {
 
   render () {
     const { selectedBusiness } = this.state
-    const { deselectBusiness, selectBusiness } = this
-    const { clearFilters, filterBusinesses } = this.props
+    const { deselectBusiness } = this
+    const { clearFilters, filterBusinesses, user } = this.props
     return (
         <div>
           {selectedBusiness ? null : <FilterNav clearFilters={clearFilters} filterBusinesses={filterBusinesses}/>}
         <div className="list-group">
-          {selectedBusiness ? <BusinessIndividual business={selectedBusiness} deselectBusiness={deselectBusiness} /> : this.renderListings()}
+          {selectedBusiness ? <BusinessIndividual business={selectedBusiness} deselectBusiness={deselectBusiness} user={user}/> : this.renderListings()}
         </div>
       </div>
     )
