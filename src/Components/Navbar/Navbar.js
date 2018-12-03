@@ -9,7 +9,7 @@ class Navbar extends React.Component {
   
   render () {
 
-    const { signout, user, handleSubmit, handleSignup, deselectBusiness } = this.props
+    const { signout, user, handleSubmit, handleSignup, deselectBusiness, updateUser } = this.props
 
     return (
         <div>

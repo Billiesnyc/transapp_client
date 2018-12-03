@@ -23,7 +23,7 @@ class LoginButtons extends React.Component {
           </div>
           :
           <div>
-            <span className="pr-3">Welcome, {user.email} </span>
+            <span className="pr-3 black-link">Welcome, <Link to="/account">{user.email}</Link> </span>
             <input type="button" className="btn blue-button" value="Log Out" onClick={signout}/>
           </div>
           }

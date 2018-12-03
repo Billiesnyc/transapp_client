@@ -6,6 +6,8 @@ import SignupForm from './Components/LogIn/SignupForm'
 import New from './Components/New/New'
 import Navbar from './Components/Navbar/Navbar'
 import Home from './Components/Home'
+import Account from './Components/Account'
+
 require('dotenv').config()
 
 class App extends Component {
@@ -24,10 +26,12 @@ class App extends Component {
       this.props.history.push('/login')
     } else {
       localStorage.setItem('token', user.token)
-      this.setState({ user: user})
+      this.setState({ user: user })
       this.props.history.push('/home')
       API.getBusinesses()
-      .then(data => this.setState({ businesses: data })) 
+      .then(data => this.setState({ businesses: data }))
+      .then(this.filterBusinesses(this.state.user.city, 'city'))
+      
     } 
   }
 
@@ -40,10 +44,10 @@ class App extends Component {
   filterBusinesses = (filterProps, filterName) => {
     let filteredBusinesses = this.state.businesses
     if (filterName === 'category') {
-        filteredBusinesses = this.state.filteredBusinesses.filter(business => business.category === filterProps)
+        filteredBusinesses = this.state.filteredBusinesses.filter(business => business.category.includes(filterProps))
     this.setState({ filteredBusinesses })}
      if (filterName === 'city') {
-      filteredBusinesses = this.state.filteredBusinesses.filter(business => business.city === filterProps)
+      filteredBusinesses = this.state.filteredBusinesses.filter(business => business.city.includes(filterProps))
       this.setState({ filteredBusinesses })}
     this.setState({ filterProps: [...this.state.filterProps, filterProps] })
     }
@@ -63,6 +67,10 @@ class App extends Component {
      API.getBusinesses()
       .then(data => this.setState({ businesses: data, filteredBusinesses: data })) 
     } 
+  }
+
+  updateUser = (user) => {
+    this.setState({ user, filterProps: [user.city] })
   }
 
   selectBusiness = (selectedBusiness) => {
@@ -87,7 +95,7 @@ class App extends Component {
 
   render() {
     
-    const { handleSubmit, handleSignup, signout, filterBusinesses, clearFilters, selectBusiness, deselectBusiness } = this
+    const { handleSubmit, handleSignup, signout, filterBusinesses, clearFilters, selectBusiness, deselectBusiness, updateUser } = this
     const { user, businesses, selectedBusiness, filterProps, filteredBusinesses } = this.state
 
     return (
@@ -99,13 +107,15 @@ class App extends Component {
             user={user} 
             filterBusinesses={filterBusinesses}
             deselectBusiness={deselectBusiness}
+           
         />
         </header>
        
         <Route exact path='/login' render={props => <LoginForm {...props} handleSubmit={handleSubmit} />} />
         <Route exact path='/signup' render={props => <SignupForm {...props} handleSignup={handleSignup} />} />
         <Route exact path='/new' render={props => <New {...props} user={user} />} />
-        
+        <Route exact path='/account' render={props => <Account {...props} user={user} updateUser={updateUser}/>} />
+
         <Route path='/home' 
           render={props => 
             <Home {...props} 
