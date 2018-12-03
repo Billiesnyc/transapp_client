@@ -1,7 +1,7 @@
 import React from 'react'
 import API from '../API'
 import FilterItem from './FilterItem'
-
+import FilterProps from  './FilterProps'
 
 class FilterNav extends React.Component {
 
@@ -18,13 +18,13 @@ class FilterNav extends React.Component {
     }
 
     renderFilter = (mapItem, name) => {
-        return mapItem.map((prop, idx) => <FilterItem prop={prop} key={idx} filterBusinesses={this.props.filterBusinesses} filterName={name}/>)
+        return mapItem.map((filterProp, idx) => <FilterItem filterProp={filterProp} key={idx} filterBusinesses={this.props.filterBusinesses} filterName={name}/>)
     }
 
 
   render () {
 
-    const { clearFilters } = this.props
+    const { clearFilters, filterProps } = this.props
     const { renderFilter } = this
     const { categories, cities } = this.state
 
@@ -50,16 +50,15 @@ class FilterNav extends React.Component {
         {renderFilter(categories, 'category')}
         </div>
          </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <form className="form-inline my-2 my-lg-0">
               <input className="form-control mr-sm-2" type="search" placeholder="Type and hit enter to search" aria-label="Search" />
             </form>
-          </li>
-          <li className="nav-item active" onClick={clearFilters}>
-            <a className="nav-link" href="#">Clear Filters</a>
-          </li>
+          </li> */}
+          
           </ul>
           </nav>
+        {this.props.filterProps.length > 0 ? <FilterProps filterProps={filterProps} clearFilters={clearFilters} />  : null }
           </div>
     )
   }

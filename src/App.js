@@ -6,15 +6,16 @@ import SignupForm from './Components/LogIn/SignupForm'
 import New from './Components/New/New'
 import Navbar from './Components/Navbar/Navbar'
 import Home from './Components/Home'
-
+require('dotenv').config()
 
 class App extends Component {
 
   state = {
     user: null,
     businesses: [],
+    selectedBusiness: null,
     filteredBusinesses: [],
-    
+    filterProps: []
   }
 
   login = (user) => {
@@ -36,17 +37,19 @@ class App extends Component {
     this.props.history.push('/home')
   }
 
-  filterBusinesses = (prop, filterName) => {
+  filterBusinesses = (filterProps, filterName) => {
+    let filteredBusinesses = this.state.businesses
     if (filterName === 'category') {
-    let filteredBusinesses = this.state.businesses.filter(business => business.category === prop)
+        filteredBusinesses = this.state.filteredBusinesses.filter(business => business.category === filterProps)
     this.setState({ filteredBusinesses })}
-    else if (filterName === 'city') {
-      let filteredBusinesses = this.state.businesses.filter(business => business.city === prop)
-    this.setState({ filteredBusinesses })}
+     if (filterName === 'city') {
+      filteredBusinesses = this.state.filteredBusinesses.filter(business => business.city === filterProps)
+      this.setState({ filteredBusinesses })}
+    this.setState({ filterProps: [...this.state.filterProps, filterProps] })
     }
   
   clearFilters = () => {
-    this.setState({ filteredBusinesses: this.state.businesses })
+    this.setState({ filteredBusinesses: this.state.businesses, filterProps: [] })
   }
 
   componentDidMount() {
@@ -58,8 +61,16 @@ class App extends Component {
         this.props.history.push('/home')
       })
      API.getBusinesses()
-      .then(data => this.setState({ businesses: data })) 
+      .then(data => this.setState({ businesses: data, filteredBusinesses: data })) 
     } 
+  }
+
+  selectBusiness = (selectedBusiness) => {
+    this.setState({ selectedBusiness })
+  }
+
+  deselectBusiness = () => {
+    this.setState({ selectedBusiness: null })
   }
 
   handleSubmit = (email, password) => {
@@ -76,8 +87,8 @@ class App extends Component {
 
   render() {
     
-    const { handleSubmit, handleSignup, signout, filterBusinesses, clearFilters } = this
-    const { user, businesses, filteredBusinesses } = this.state
+    const { handleSubmit, handleSignup, signout, filterBusinesses, clearFilters, selectBusiness, deselectBusiness } = this
+    const { user, businesses, selectedBusiness, filterProps, filteredBusinesses } = this.state
 
     return (
       <div className="App container">
@@ -87,6 +98,7 @@ class App extends Component {
             signout={signout} 
             user={user} 
             filterBusinesses={filterBusinesses}
+            deselectBusiness={deselectBusiness}
         />
         </header>
        
@@ -103,6 +115,11 @@ class App extends Component {
               clearFilters={clearFilters}
               filterBusinesses={filterBusinesses}
               user={user}
+              selectedBusiness={selectedBusiness}
+              deselectBusiness={deselectBusiness}
+              selectBusiness={selectBusiness}
+              filterProps={filterProps}
+    
             />} 
         />
       </div>

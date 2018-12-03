@@ -37,7 +37,7 @@ class NewForm extends React.Component {
         { form ? null :
         <div className="row pt-3">
         
-            <SearchBox confirmationPopout={confirmationPopout}/> 
+            <SearchBox confirmationPopout={confirmationPopout} /> 
 
         </div>}
         <div className="row pt-3">
