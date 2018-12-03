@@ -30,7 +30,7 @@ class SignupForm extends React.Component {
           <input id='cityInput' value={city} type='city' name='city' className="form-control"
             onChange={handleChange} />
         <br/>
-        <label className="grey-text" margin='normal'>Gender</label>
+        <label className="grey-text" margin='normal'>Gender Identity</label>
           <input id='genderInput' value={gender} type='gender' name='gender' className="form-control"
             onChange={handleChange} />
         <br/>

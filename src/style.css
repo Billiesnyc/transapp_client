@@ -25,4 +25,13 @@
         border-color: #82CAFF;
     }
 
+    .black-link a, a:visited{
+        color:#000;
+        text-decoration: underline;
+    }
+    .black-link a:hover{
+        color:#82CAFF;
+        text-decoration: underline;
+    }
+
     

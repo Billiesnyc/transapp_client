@@ -2,10 +2,11 @@ class API {
     static init () {
      
       this.baseUrl = 'http://localhost:3000'
-      this.businessURL = 'http://localhost:3000/businesses'
-      this.reviewsURL = 'http://localhost:3000/reviews'
+      this.businessURL = this.baseUrl + '/businesses'
+      this.reviewsURL = this.baseUrl + '/reviews'
       this.citiesURL = this.baseUrl + '/cities'
       this.categoriesURL = this.baseUrl + '/categories'
+      this.usersURL = this.baseUrl + '/account'
       this.loginUrl = this.baseUrl + '/login'
       this.signupUrl = this.baseUrl + '/signup'
       this.validateUrl = this.baseUrl + '/validate'
@@ -94,6 +95,19 @@ class API {
           user_id
         })
       }).then(resp => resp.json())
+    }
+
+    static updateAccount (email, password, city, gender){
+      const token = localStorage.getItem('token')
+      return fetch(this.usersURL, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'Authorization': token}, 
+        body: JSON.stringify({
+          email, 
+          password, 
+          city, 
+          gender 
+      })}).then(resp => resp.json())
     }
   
   } 

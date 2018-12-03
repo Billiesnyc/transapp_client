@@ -65,6 +65,7 @@ class BusinessIndividual extends Component {
                         lat={Number(business.latitude)} 
                         long={Number(business.longitude)} 
                         place={business.places_id} />
+                    <a href={'https://www.google.com/maps/place/?q=place_id:' + this.props.business.places_id} target="_blank"><button className="btn btn-outline-secondary">View on Google Maps</button></a>
                 </div>
             </div>
             <div className="row border-top">
