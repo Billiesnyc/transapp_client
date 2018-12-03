@@ -9,12 +9,12 @@ class Navbar extends React.Component {
   
   render () {
 
-    const { signout, user, handleSubmit, handleSignup } = this.props
+    const { signout, user, handleSubmit, handleSignup, deselectBusiness } = this.props
 
     return (
         <div>
         <nav className="navbar navbar-expand-lg navbar-light main-nav-pink">
-        <Link to="/home" className="navbar-brand">
+        <Link to="/home" className="navbar-brand" onClick={deselectBusiness}>
         Affirm</Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -23,7 +23,7 @@ class Navbar extends React.Component {
         <ul className="navbar-nav mr-auto">
         
           <li className="nav-item active">
-          <Link to="/home" className="nav-link">Home</Link>
+          <Link to="/home" className="nav-link" onClick={deselectBusiness}>Home</Link>
           </li>
           
           
