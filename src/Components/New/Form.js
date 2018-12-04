@@ -38,8 +38,8 @@ class Form extends React.Component {
         let country =this.props.place.address_components[6].long_name
 
         API.createReview(latitude, longitude, name, places_id, category, city, state, country, this.state.review, this.state.up, this.props.user.id)
-        .then(business => 
-            this.props.history.push(business.id.toString()))
+        .then(business => this.props.createNewBusiness(business))
+       
    }    
   
   render () {
@@ -68,4 +68,4 @@ class Form extends React.Component {
   }
 }
 
-export default Form
+export default withRouter(Form)

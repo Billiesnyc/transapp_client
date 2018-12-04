@@ -9,10 +9,10 @@
     }
     
     render () {
-      const { user } = this.props
+      const { user, createNewBusiness } = this.props
       return (
         <div className="list-group">
-            { user ? <NewForm user={user} /> : <Link to="/login"> Sorry, you have to be logged in to add a recommendation. </Link>}  
+            { user ? <NewForm user={user} createNewBusiness={createNewBusiness}/> : <Link to="/login"> Sorry, you have to be logged in to add a recommendation. </Link>}  
           </div>
       )
     }

@@ -73,6 +73,10 @@ class App extends Component {
     this.setState({ user, filterProps: [user.city] })
   }
 
+  createNewBusiness = (business) => {
+    this.setState({ businesses: [...this.state.businesses, business], filteredBusinesses: [...this.state.filteredBusinesses, business] },  
+      () => this.props.history.push(business.id.toString()))
+  }
 
   handleSubmit = (email, password) => {
     API.login(email, password)
@@ -88,7 +92,7 @@ class App extends Component {
 
   render() {
     
-    const { handleSubmit, handleSignup, signout, filterBusinesses, clearFilters, updateUser } = this
+    const { handleSubmit, handleSignup, signout, filterBusinesses, clearFilters, updateUser, createNewBusiness } = this
     const { user, businesses, filterProps, filteredBusinesses } = this.state
 
     return (
@@ -105,7 +109,7 @@ class App extends Component {
         <Switch>
         <Route exact path='/login' render={props => <LoginForm {...props} handleSubmit={handleSubmit} />} />
         <Route exact path='/signup' render={props => <SignupForm {...props} handleSignup={handleSignup} />} />
-        <Route exact path='/new' render={props => <New {...props} user={user} />} />
+        <Route exact path='/new' render={props => <New {...props} user={user} createNewBusiness={createNewBusiness}/>} />
         <Route exact path='/account' render={props => <Account {...props} user={user} updateUser={updateUser}/>} />
         <Route path='/home' 
           render={props => 
@@ -120,7 +124,7 @@ class App extends Component {
             />} />
         <Route path='/:id' render={props =>
           <BusinessIndividual {...props} 
-          businesses={filteredBusinesses}
+          businesses={businesses}
           user={user}/>
         } />
         </Switch>
