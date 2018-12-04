@@ -1,7 +1,8 @@
 import React from 'react'
-import GoogleMapReact from 'google-map-react';
+import GoogleMapReact from 'google-map-react'
+import Pin from './pin3.png'
 
-const PinComp = () => <div><img src="https://banner2.kisspng.com/20180525/etr/kisspng-google-map-maker-google-maps-gps-pin-5b08a401590c40.5778918615272929293648.jpg" width="30 em" alt="Map Marker"></img></div>;
+const PinComp = () => <div><img src={Pin} width="30 em" alt="Map Marker"></img></div>;
 
 class MapIndividual extends React.Component {
     
