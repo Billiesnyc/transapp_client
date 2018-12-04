@@ -4,6 +4,7 @@ import React from 'react'
 class SignupForm extends React.Component {
   state = {
     email: '',
+    username: '',
     password: '',
     city: '',
     gender: ''
@@ -13,13 +14,17 @@ class SignupForm extends React.Component {
   this.setState({ [event.target.name]: event.target.value })
 
   render () {
-    const { email, password, city, gender } = this.state
+    const { email, username, password, city, gender } = this.state
     const { handleChange } = this
     const { handleSignup } = this.props
     return(
       <form>
           <label className="grey-text" margin='normal'>Email</label>
           <input id='emailInput' value={email} name='email' className="form-control"
+            onChange={handleChange} />  
+        <br/>
+        <label className="grey-text" margin='normal'>Username</label>
+          <input id='usernameInput' value={username} name='username' className="form-control"
             onChange={handleChange} />  
         <br/>
           <label className="grey-text" margin='normal'>Password</label>
@@ -34,9 +39,9 @@ class SignupForm extends React.Component {
           <input id='genderInput' value={gender} type='gender' name='gender' className="form-control"
             onChange={handleChange} />
         <br/>
-        <button variant='contained' type='submit' className="btn btn-info" onClick={e => {
+        <button variant='contained' type='submit' className="btn blue-button" onClick={e => {
           e.preventDefault()
-          handleSignup(email, password, city, gender)
+          handleSignup(email, username, password, city, gender)
           }} > 
           Submit
         </button>

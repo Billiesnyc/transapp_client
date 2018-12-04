@@ -1,17 +1,17 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import BusinessListing from './Business/BusinessListing'
-import BusinessIndividual from './Business/BusinessIndividual'
 import FilterNav from './Navbar/FilterNav'
 class Home extends React.Component {
 
   renderListings = () => {
       if (this.props.filteredBusinesses.length > 0){
       return this.props.filteredBusinesses.map(business => 
-        <BusinessListing 
-          business={business} 
-          selectBusiness={this.props.selectBusiness}
-          key={business.id}
-          />)}
+        <Link to={business.id.toString()}> 
+          <BusinessListing 
+            business={business} 
+            key={business.id} />
+        </Link>)}
       else if (this.props.filteredBusinesses.length === 0){
         return (
           <div className="p-2">
@@ -20,16 +20,14 @@ class Home extends React.Component {
       }
     }
 
-
-  render () {
+    render () {
     
-    const { clearFilters, filterBusinesses, user, selectedBusiness, deselectBusiness, filterProps } = this.props
+    const { clearFilters, filterBusinesses, filterProps } = this.props
     return (
         <div>
-       
-          {selectedBusiness ? null : <FilterNav clearFilters={clearFilters} filterBusinesses={filterBusinesses} filterProps={filterProps}/>}
+          <FilterNav clearFilters={clearFilters} filterBusinesses={filterBusinesses} filterProps={filterProps}/>
         <div className="list-group">
-          {selectedBusiness ? <BusinessIndividual business={selectedBusiness} deselectBusiness={deselectBusiness} user={user}/> : this.renderListings()}
+          {this.renderListings()}
         </div>
       </div>
     )

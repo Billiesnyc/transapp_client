@@ -1,6 +1,6 @@
 import React from 'react'
 import API from '../API'
-import BusinessIndividual from '../Business/BusinessIndividual'
+import { withRouter } from 'react-router' 
 
 class Form extends React.Component {
 
@@ -27,7 +27,7 @@ class Form extends React.Component {
       }
 
    handleSubmit = (e) => {
-        e.preventDefault()
+       e.preventDefault();
         let latitude = this.props.place.geometry.location.lat()
         let longitude = this.props.place.geometry.location.lng()
         let name = this.props.place.name
@@ -39,17 +39,14 @@ class Form extends React.Component {
 
         API.createReview(latitude, longitude, name, places_id, category, city, state, country, this.state.review, this.state.up, this.props.user.id)
         .then(business => 
-            this.setState({ business }))
+            this.props.history.push(business.id.toString()))
    }    
   
   render () {
-    const { thumbUp, thumbDown, handleChange, deselectBusiness } = this
+      
+    const { thumbUp, thumbDown, handleChange } = this
     const { place } = this.props
-    const { business } = this.state
     return (
-       < >
-        {business ? <BusinessIndividual business={business} deselectBusiness={deselectBusiness} /> 
-        :
         <div>
         <h3>Adding a review for {place.name}</h3>
         <p>{place.formatted_address}</p>
@@ -65,8 +62,8 @@ class Form extends React.Component {
             <button type="submit" className="btn blue-button">Submit</button>
             
         </form>
-       </div>}
-       </>
+       </div>
+
     )
   }
 }

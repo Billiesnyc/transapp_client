@@ -24,12 +24,13 @@ class API {
       }).then(resp => resp.json())
     }
   
-    static signup (email, password, city, gender) {
+    static signup (email, username, password, city, gender) {
       return fetch(this.signupUrl, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'}, 
         body: JSON.stringify({
           email,
+          username,
           password,
           city,
           gender
@@ -97,13 +98,14 @@ class API {
       }).then(resp => resp.json())
     }
 
-    static updateAccount (email, password, city, gender){
+    static updateAccount (email, username, password, city, gender){
       const token = localStorage.getItem('token')
       return fetch(this.usersURL, {
         method: 'POST',
         headers: {'Content-Type': 'application/json', 'Authorization': token}, 
         body: JSON.stringify({
           email, 
+          username,
           password, 
           city, 
           gender 
