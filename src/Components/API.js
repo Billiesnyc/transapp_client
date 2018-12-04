@@ -65,7 +65,26 @@ class API {
       return this.get(this.categoriesURL)
     }
 
-    static createReview (latitude, longitude, name, places_id, category, city, state, country, review, up, user_id) {
+    static createReview (latitude, longitude, name, places_id, category, city, country, review, up, user_id) {
+      return fetch(this.businessURL, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify({
+          latitude, 
+          longitude,
+          name,
+          places_id,
+          category,
+          city,
+          country, 
+          review, 
+          up,
+          user_id
+        })
+      }).then(resp => resp.json())
+    }
+
+    static createUSAReview (latitude, longitude, name, places_id, category, city, state, country, review, up, user_id) {
       return fetch(this.businessURL, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'}, 

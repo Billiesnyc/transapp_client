@@ -46,7 +46,7 @@ class BusinessIndividual extends Component {
                     </Link>
                     <br /><br /> 
                      <h1>{business.name}</h1>
-                        <p>Location: {business.city}, {business.state}, {business.country}</p>
+                        <p>Location: {business.city}, {business.country}</p>
                         <p>Category: {business.category} {business.subcategory}</p>
                         <p>Rating: {score.overall_up} <i className="material-icons green align-bottom p-1 border-right mr-1">thumb_up</i>
                                 {score.overall_down} <i className="material-icons red align-bottom p-1">thumb_down</i></p>
