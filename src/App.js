@@ -74,7 +74,10 @@ class App extends Component {
   }
 
   createNewBusiness = (business) => {
-    this.setState({ businesses: [...this.state.businesses, business], filteredBusinesses: [...this.state.filteredBusinesses, business] },  
+    if (this.state.filterProps.includes(business.city)  || this.state.filterProps === business.category){
+      this.setState({ filteredBusinesses: [...this.state.filteredBusinesses, business] })
+    }
+    this.setState({ businesses: [...this.state.businesses, business] },  
       () => this.props.history.push(business.id.toString()))
   }
 

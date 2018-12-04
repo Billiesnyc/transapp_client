@@ -7,15 +7,23 @@ class Form extends React.Component {
     state = {
         up: false,
         review: "",
-        business: null
+        business: null,  
+        clickedUp: false,
+        clickedDown: false
     }
 
     thumbUp = () => {
-        this.setState({ up: true })
+        this.setState({ up: true, clickedUp: !this.state.clickedUp })
+        if (this.state.clickedDown === true){
+            this.setState({ clickedDown: false })
+        }
     }
 
     thumbDown = () => {
-        this.setState({ up: false })
+        this.setState({ up: false, clickedDown: !this.state.clickedDown  })
+        if (this.state.clickedUp === true){
+            this.setState({ clickedUp: false })
+        }
     }
 
     handleChange = (e) => {
@@ -34,7 +42,7 @@ class Form extends React.Component {
         let places_id = this.props.place.place_id
         let category = this.props.place.types[0].split('_').join(' ').replace(/\b\w/g, l => l.toUpperCase())
         
-        let country = this.props.place.address_components.find(a => a.types[0] === "country").long_name
+        let country = this.props.place.address_components.find(a => a.types[0] === "country").short_name
         
         if (country === "USA" || country === "US"){
             let city = this.props.place.address_components.find(a => a.types[0] === "locality").long_name
@@ -53,8 +61,8 @@ class Form extends React.Component {
       
     const { thumbUp, thumbDown, handleChange } = this
     const { place } = this.props
-    console.log(this.props.place.address_components.find(a => a.types[0] === "administrative_area_level_1").long_name)
-    console.log(this.props.place.address_components.find(a => a.types[0] === "country").long_name)
+    const { clickedUp, clickedDown } = this.state
+    
     return (
         <div>
         <h3>Adding a review for {place.name}</h3>
@@ -66,7 +74,16 @@ class Form extends React.Component {
             </div>
             <div className="form-group">
             <label htmlFor="Review">Overall experience</label><br />
-            <i className="material-icons green mr-1 add-review" onClick={thumbUp}>thumb_up</i> <i className="material-icons red add-review" onClick={thumbDown}>thumb_down</i>
+            {clickedUp ? 
+                <i className="material-icons green mr-1 add-review" onClick={thumbUp}>thumb_up</i>
+                :
+                <i className="material-icons grey mr-1 add-review" onClick={thumbUp}>thumb_up</i>
+            } 
+            {clickedDown ? 
+             <i className="material-icons red add-review" onClick={thumbDown}>thumb_down</i>
+                :
+            <i className="material-icons grey add-review" onClick={thumbDown}>thumb_down</i>
+            }
             </div>
             <button type="submit" className="btn blue-button">Submit</button>
             <Link to='/home'><button className="btn btn-outline-secondary">Cancel</button></Link>
