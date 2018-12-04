@@ -21,8 +21,8 @@ class BusinessIndividual extends Component {
     }
 
     componentDidMount(){
+        console.log(this.props.businesses)
         this.setState({ business: this.props.businesses.find(business => business.id == this.props.match.params.id) }, () => this.getReviews())
-        
     }
     
     showReviews = () => {

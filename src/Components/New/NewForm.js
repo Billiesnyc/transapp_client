@@ -27,7 +27,7 @@ class NewForm extends React.Component {
   render () {
     const { confirmationPopout, addReview, cancelReview } = this
     const { place, popout, form } = this.state
-    const { user } = this.props
+    const { user, createNewBusiness } = this.props
     return (
        <div className="container">
        { form ? null :
@@ -49,7 +49,7 @@ class NewForm extends React.Component {
                     /> 
             : null }
             {form ? 
-                <Form place={place} user={user}/>
+                <Form place={place} user={user} createNewBusiness={createNewBusiness}/>
             : null }
          </div>
        </div>
