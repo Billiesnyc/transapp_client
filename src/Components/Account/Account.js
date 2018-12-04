@@ -24,14 +24,14 @@ class Account extends React.Component {
             : 
             < >
             <p><b>Email:</b> {user.email}</p>
+            <p><b>Username:</b> {user.username}</p>
             <p><b>Default City:</b> {user.city}</p>
             <p><b>Gender Identity:</b> {user.gender}</p>
-
         <button className="btn blue-button" onClick={showEdit}>Edit Account</button>
-         < />}
+         </>}
       </div>
-    )
-  }
-}
+        )
+  
+    }}
 
 export default Account

@@ -24,7 +24,7 @@ class LoginForm extends React.Component {
           <input id='passwordInput' value={password} type='password' name='password' className="form-control"  
             onChange={handleChange} />
   
-        <button variant='contained' type='submit' className="btn btn-info" onClick={e => {
+        <button variant='contained' type='submit' className="btn blue-button" onClick={e => {
           e.preventDefault()
           handleSubmit(email, password)
           }} >
