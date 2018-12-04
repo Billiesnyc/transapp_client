@@ -1,6 +1,6 @@
 import React from 'react'
 import API from '../API'
-import { withRouter } from 'react-router' 
+import { withRouter, Link } from 'react-router-dom' 
 
 class Form extends React.Component {
 
@@ -33,19 +33,28 @@ class Form extends React.Component {
         let name = this.props.place.name
         let places_id = this.props.place.place_id
         let category = this.props.place.types[0].split('_').join(' ').replace(/\b\w/g, l => l.toUpperCase())
-        let city = this.props.place.address_components[3].long_name
-        let state = this.props.place.address_components[5].long_name
-        let country =this.props.place.address_components[6].long_name
-
-        API.createReview(latitude, longitude, name, places_id, category, city, state, country, this.state.review, this.state.up, this.props.user.id)
+        
+        let country = this.props.place.address_components.find(a => a.types[0] === "country").long_name
+        
+        if (country === "USA" || country === "US"){
+            let city = this.props.place.address_components.find(a => a.types[0] === "locality").long_name
+            let state = this.props.place.address_components.find(a => a.types[0] === "administrative_area_level_1").short_name
+            API.createUSAReview(latitude, longitude, name, places_id, category, city, state, country, this.state.review, this.state.up, this.props.user.id)
+            .then(business => this.props.createNewBusiness(business))
+        }
+        else{
+        let city = this.props.place.address_components.find(a => a.types[0] === "postal_town").long_name
+        API.createReview(latitude, longitude, name, places_id, category, city, country, this.state.review, this.state.up, this.props.user.id)
         .then(business => this.props.createNewBusiness(business))
-       
+        }
    }    
   
   render () {
       
     const { thumbUp, thumbDown, handleChange } = this
     const { place } = this.props
+    console.log(this.props.place.address_components.find(a => a.types[0] === "administrative_area_level_1").long_name)
+    console.log(this.props.place.address_components.find(a => a.types[0] === "country").long_name)
     return (
         <div>
         <h3>Adding a review for {place.name}</h3>
@@ -60,7 +69,7 @@ class Form extends React.Component {
             <i className="material-icons green mr-1 add-review" onClick={thumbUp}>thumb_up</i> <i className="material-icons red add-review" onClick={thumbDown}>thumb_down</i>
             </div>
             <button type="submit" className="btn blue-button">Submit</button>
-            
+            <Link to='/home'><button className="btn btn-outline-secondary">Cancel</button></Link>
         </form>
        </div>
 

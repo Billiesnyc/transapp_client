@@ -8,7 +8,7 @@ class BusinessListing extends Component {
         return(
             <div >
                 <div className="list-group-item list-group-item-action">
-                    {business.name} - {business.city}, {business.state}, {business.country}
+                    {business.name} - {business.city}{business.state ? ", " + business.state : null}, {business.country}
                 </div>
             </div>
             )
