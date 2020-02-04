@@ -49,7 +49,7 @@ class BusinessIndividual extends Component {
                         <p>Rating: {score.overall_up} <i className="material-icons green align-bottom p-1 border-right mr-1">thumb_up</i>
                                 {score.overall_down} <i className="material-icons red align-bottom p-1">thumb_down</i></p>
                     {reviewForm ? null : 
-                        <Button color="primary" onClick={popReviewForm}>Add Review</Button> 
+                        <Button color="primary" className="blue-button" onClick={popReviewForm}>Add Review</Button> 
                         }
                     {reviewForm ? 
                         <AddReview 

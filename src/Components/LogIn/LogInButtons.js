@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { Button } from 'reactstrap';
 
 class LoginButtons extends React.Component {
  
@@ -14,10 +14,10 @@ class LoginButtons extends React.Component {
           <div>
            
             <Link to="/login">
-              <button className="btn blue-button">Log in</button>
+              <Button color="primary" className="blue-button">Log in</Button>
             </Link>
             <Link to="/signup">
-              <button className="btn blue-button">Sign up</button>
+              <Button color="primary" className="blue-button">Sign up</Button>
             </Link>
            
           </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import API from '../API'
+import { Button } from 'reactstrap';
 
 
 class AddReview extends React.Component {
@@ -65,8 +66,8 @@ class AddReview extends React.Component {
             <i className="material-icons grey add-review" onClick={thumbDown}>thumb_down</i>
             }
             </div>
-            <button type="submit" className="btn blue-button">Submit</button>
-            <button className="btn btn-light" onClick={popReviewForm}>Cancel</button>
+            <Button color="primary" type="submit" className="blue-button">Submit</Button>
+            <Button color="light" onClick={popReviewForm}>Cancel</Button>
         </form>
        </div>
     )

@@ -11,28 +11,15 @@
 .main-nav-pink {background-color: #ffe4e1;}
 .dropdown {list-style:none;}
     
-    .blue-button{ color: #fff;
-    background-color: #82CAFF;
-    border-color: #C6DEFF;
+    .blue-button {
+    background-color: #82CAFF!important;
+    border: none!important;
+    color: #fff!important;
     }
 
     .blue-button:hover {
-        background-color: #C6DEFF;
+        background-color: #C6DEFF!important;
     }
-
-    .blue-button-outline{
-    color: #C6DEFF;
-    background-color: #ffffff;
-    background-image: none;
-    border-color: #C6DEFF;
-    }
-
-    .blue-button-outline:hover {
-        color: #fff;
-        background-color: #82CAFF;
-        border-color: #82CAFF;
-    }
-
     .black-link a, a:visited{
         color:#000;
         text-decoration: underline;
