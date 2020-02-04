@@ -1,14 +1,18 @@
 import React from 'react'
 import API from '../API'
+import { Navbar, UncontrolledDropdown,  DropdownToggle,  DropdownMenu } from 'reactstrap';
 import FilterItem from './FilterItem'
 import FilterProps from  './FilterProps'
 
 class FilterNav extends React.Component {
 
-    state = {
+  constructor(props) {
+    super(props);
+    this.state = {
         cities: [],
         categories: []
-    }
+        };
+      }
 
     componentDidMount() {
         API.getCities()
@@ -30,34 +34,30 @@ class FilterNav extends React.Component {
 
     return (
         <div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <ul className="navbar-nav mr-auto">
-          <li className="nav-item dropdown">
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Filter by City
-        </a>
-        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-        {renderFilter(cities, 'city')}
-      
-        </div>
-      
-         </li>
-        <li className="nav-item dropdown">
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Filter by Category
-        </a>
-        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-        {renderFilter(categories, 'category')}
-        </div>
-         </li>
+        <Navbar color="light" light expand="md">
+          <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Filter by City
+              </DropdownToggle>
+              <DropdownMenu right>
+              {renderFilter(cities, 'city')}
+              </DropdownMenu>
+          </UncontrolledDropdown>
+          <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Filter by Category
+              </DropdownToggle>
+              <DropdownMenu right>
+              {renderFilter(categories, 'category')}
+              </DropdownMenu>
+          </UncontrolledDropdown>
+        
           {/* <li className="nav-item">
             <form className="form-inline my-2 my-lg-0">
               <input className="form-control mr-sm-2" type="search" placeholder="Type and hit enter to search" aria-label="Search" />
             </form>
           </li> */}
-          
-          </ul>
-          </nav>
+        </Navbar>
         {this.props.filterProps.length > 0 ? <FilterProps filterProps={filterProps} clearFilters={clearFilters} />  : null }
           </div>
     )

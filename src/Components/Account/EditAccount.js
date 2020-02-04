@@ -2,15 +2,17 @@ import React from 'react'
 import API from '../API'
 class EditAccount extends React.Component {
 
-    state = {
+    constructor(props) {
+        super(props);
+        this.state = {
         email: '',
         username: '',
         password: '',
         city: '',
         gender: '',
         showErrors: false
-      }
-    
+      };
+    }    
       handleChange = event =>
       this.setState({ [event.target.name]: event.target.value })
 

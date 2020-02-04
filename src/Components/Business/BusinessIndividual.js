@@ -2,30 +2,28 @@ import React, { Component } from 'react';
 import API from '../API'
 import ReviewItem from './ReviewItem'
 import { Link } from 'react-router-dom'
+import { Button } from 'reactstrap';
 import MapIndividual from '../Map/MapIndividual'
 import AddReview from './AddReview'
 import '../../style.css'
 
 class BusinessIndividual extends Component {
 
-    state = {
+    constructor(props) {
+        super(props);
+        this.state = {
         reviews: [],
         score: {},
-        reviewForm: false,
-        business: {}
+        reviewForm: false
+        };
     }
-
     getReviews = () => {
-        API.getBusiness(this.state.business.id)
+        API.getBusiness(this.props.business.id)
             .then(data => this.setState({ reviews: data[0], score: data[1] }))
     }
 
-    componentDidMount(){
-        console.log(this.props.businesses)
-        this.setState({ business: this.props.businesses.find(business => business.id == this.props.match.params.id) }, () => this.getReviews())
-    }
-    
     showReviews = () => {
+        this.getReviews();
         return this.state.reviews.map(review => <ReviewItem review={review} key={review.id}/>)
     }
 
@@ -34,15 +32,15 @@ class BusinessIndividual extends Component {
     }
 
     render(){
-        const { user } = this.props
+        const { user, business } = this.props
         const { showReviews, popReviewForm, getReviews } = this
-        const { score, reviewForm, business } = this.state
+        const { score, reviewForm } = this.state
         return(
             <div className="container p-4">
              <div className="row">
                 <div className="col-8">
                     <Link to="/home" className="navbar-brand">
-                        <button className="btn btn-outline-secondary">Back</button>
+                        <Button outline color="secondary">Back</Button>
                     </Link>
                     <br /><br /> 
                      <h1>{business.name}</h1>
@@ -51,7 +49,7 @@ class BusinessIndividual extends Component {
                         <p>Rating: {score.overall_up} <i className="material-icons green align-bottom p-1 border-right mr-1">thumb_up</i>
                                 {score.overall_down} <i className="material-icons red align-bottom p-1">thumb_down</i></p>
                     {reviewForm ? null : 
-                        <button className="btn blue-button" onClick={popReviewForm}>Add Review</button> 
+                        <Button color="primary" onClick={popReviewForm}>Add Review</Button> 
                         }
                     {reviewForm ? 
                         <AddReview 
@@ -62,13 +60,13 @@ class BusinessIndividual extends Component {
                             /> 
                         : null}
                 </div>
-                <div className="col-4">
+                {/* <div className="col-4">
                     <MapIndividual 
                         lat={business.latitude ? Number(business.latitude) : 15} 
                         long={business.longitude ? Number(business.longitude) : 10} 
                         place={business.places_id? business.places_id : "ChIJ3RlqFuta04URQmbHMgLij_U"} />
                     <a href={'https://www.google.com/maps/place/?q=place_id:' + this.state.business.places_id} target="_blank" rel="noopener noreferrer"><button className="btn btn-outline-secondary">View on Google Maps</button></a>
-                </div>
+                </div> */}
             </div>
             <div className="row border-top">
                 <div className="col">

@@ -4,12 +4,15 @@ import { withRouter, Link } from 'react-router-dom'
 
 class Form extends React.Component {
 
-    state = {
+    constructor(props) {
+        super(props);
+        this.state = {
         up: false,
         review: "",
         business: null,  
         clickedUp: false,
         clickedDown: false
+        };
     }
 
     thumbUp = () => {

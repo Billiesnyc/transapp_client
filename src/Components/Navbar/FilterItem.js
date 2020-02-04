@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {DropdownItem} from 'reactstrap';
 
 
 class FilterItem extends React.Component {
@@ -7,8 +7,9 @@ class FilterItem extends React.Component {
   render () {
     const { filterProp, filterBusinesses, filterName } = this.props
     return(
-        <a className="dropdown-item" href="#" onClick={() => filterBusinesses(filterProp, filterName)}>{filterProp}
-        </a>
+      <DropdownItem onClick={() => filterBusinesses(filterProp, filterName)}>
+        {filterProp}
+      </DropdownItem>
     )
   }
 

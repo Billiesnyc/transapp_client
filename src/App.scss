@@ -1,4 +1,10 @@
-/* .material-icons.red { color: #ef080b; }
+@import '~bootstrap/scss/functions';
+@import './scss/variables';
+@import './scss/bootstrap-variables';
+@import '~bootstrap/scss/bootstrap';
+@import './scss/index';
+
+.material-icons.red { color: #ef080b; }
 .material-icons.green { color: #66ca0e ; }
 .material-icons.grey { color: #eeeeee ; }
 .material-icons.add-review  { cursor: pointer; }
@@ -35,5 +41,3 @@
         color:#82CAFF;
         text-decoration: underline;
     }
-
-     */

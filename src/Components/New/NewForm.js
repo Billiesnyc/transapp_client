@@ -5,11 +5,14 @@ import Form from './Form'
 
 class NewForm extends React.Component {
 
-  state = {
+  constructor(props) {
+    super(props);
+    this.state = {
     place: "",
     popout: false,
     form: false,
-  }
+    };
+  } 
   
   confirmationPopout = (popout, place) => {
     this.setState({ popout, place })

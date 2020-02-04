@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom'
+import './App.scss';
 import API from './Components/API'
 import LoginForm from './Components/LogIn/LoginForm'
 import SignupForm from './Components/LogIn/SignupForm'
@@ -13,11 +14,15 @@ require('dotenv').config()
 
 class App extends Component {
 
-  state = {
+  constructor(props) {
+    super(props);
+    this.state = {
     user: null,
     businesses: [],
+    singleBusiness: [],
     filteredBusinesses: [],
     filterProps: []
+    };
   }
 
   login = (user) => {
@@ -81,6 +86,10 @@ class App extends Component {
       () => this.props.history.push(business.id.toString()))
   }
 
+  assignSingleBusiness = (singleBusiness) =>{
+    this.setState({ singleBusiness })
+  }
+
   handleSubmit = (email, password) => {
     API.login(email, password)
       .then(this.login)
@@ -95,8 +104,8 @@ class App extends Component {
 
   render() {
     
-    const { handleSubmit, handleSignup, signout, filterBusinesses, clearFilters, updateUser, createNewBusiness } = this
-    const { user, businesses, filterProps, filteredBusinesses } = this.state
+    const { handleSubmit, handleSignup, signout, filterBusinesses, clearFilters, updateUser, createNewBusiness, assignSingleBusiness } = this
+    const { user, businesses, filterProps, filteredBusinesses, singleBusiness } = this.state
 
     return (
       <div className="App container">
@@ -124,10 +133,11 @@ class App extends Component {
               filterBusinesses={filterBusinesses}
               user={user}
               filterProps={filterProps}
+              assignSingleBusiness={assignSingleBusiness}
             />} />
         <Route path='/:id' render={props =>
           <BusinessIndividual {...props} 
-          businesses={businesses}
+          business={singleBusiness}
           user={user}/>
         } />
         </Switch>

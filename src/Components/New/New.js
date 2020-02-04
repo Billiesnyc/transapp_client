@@ -3,10 +3,6 @@
   import { Link } from 'react-router-dom'
 
   class New extends React.Component {
-
-    state = {
-      
-    }
     
     render () {
       const { user, createNewBusiness } = this.props

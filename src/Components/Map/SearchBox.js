@@ -7,9 +7,12 @@ const google = window.google
 
 export default class SearchBox extends React.Component {
 
-    state = {
+  constructor(props) {
+    super(props);
+    this.state = {
         getPlace: null
-    }
+      };
+  }
     
   static propTypes = {
     placeholder: PropTypes.string,

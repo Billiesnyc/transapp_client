@@ -3,8 +3,9 @@ import EditAccount from './EditAccount'
 
 class Account extends React.Component {
 
-    state={
-        edit: false
+    constructor(props) {
+        super(props);
+        this.state = { edit: false };
     }
 
     showEdit = () => {

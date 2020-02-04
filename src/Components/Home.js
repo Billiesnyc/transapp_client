@@ -7,7 +7,7 @@ class Home extends React.Component {
   renderListings = () => {
       if (this.props.filteredBusinesses.length > 0){
       return this.props.filteredBusinesses.map(business => 
-        <Link to={business.id.toString()} key={business.id}> 
+        <Link to={business.id.toString()} key={business.id} onClick={() => this.props.assignSingleBusiness(business)}> 
           <BusinessListing 
             business={business} 
             key={business.id} />

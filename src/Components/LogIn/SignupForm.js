@@ -2,12 +2,15 @@ import React from 'react'
 
 
 class SignupForm extends React.Component {
-  state = {
+  constructor(props) {
+    super(props);
+    this.state = {
     email: '',
     username: '',
     password: '',
     city: '',
     gender: ''
+    };
   }
 
   handleChange = event =>

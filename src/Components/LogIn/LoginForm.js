@@ -2,9 +2,12 @@ import React from 'react'
 
 
 class LoginForm extends React.Component {
-  state = {
+  constructor(props) {
+    super(props);
+    this.state = {
     email: '',
     password: ''
+    };
   }
 
   handleChange = event =>

@@ -4,11 +4,14 @@ import API from '../API'
 
 class AddReview extends React.Component {
 
-    state = {
+    constructor(props) {
+        super(props);
+        this.state = {
         up: false,
         review: "",
         clickedUp: false,
         clickedDown: false
+        };
     }
 
     thumbUp = () => {
