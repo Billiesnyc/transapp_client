@@ -17,14 +17,14 @@ class AddReview extends React.Component {
 
     thumbUp = () => {
         this.setState({ up: true, clickedUp: !this.state.clickedUp })
-        if (this.state.clickedDown === true){
+        if (this.state.clickedDown){
             this.setState({ clickedDown: false })
         }
     }
 
     thumbDown = () => {
         this.setState({ up: false, clickedDown: !this.state.clickedDown  })
-        if (this.state.clickedUp === true){
+        if (this.state.clickedUp){
             this.setState({ clickedUp: false })
         }
     }
@@ -32,7 +32,6 @@ class AddReview extends React.Component {
     handleChange = (e) => {
         this.setState({ review: e.target.value })
     }
-
 
    handleSubmit = (e) => {
         e.preventDefault()
@@ -42,13 +41,13 @@ class AddReview extends React.Component {
    }    
   
   render () {
-    const { thumbUp, thumbDown, handleChange } = this
+    const { thumbUp, thumbDown, handleChange, handleSubmit } = this
     const { popReviewForm } = this.props
     const { clickedUp, clickedDown } = this.state
     return (
        <div className="border-top pt-3 mb-3">
        <h3>Add Review</h3>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div className="form-group">
             <label htmlFor="Review">Review</label>
             <textarea className="form-control" onChange={handleChange} id="Review" rows="3"></textarea>

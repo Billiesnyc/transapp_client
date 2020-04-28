@@ -3,7 +3,7 @@ import API from '../API'
 import ReviewItem from './ReviewItem'
 import { Link } from 'react-router-dom'
 import { Button } from 'reactstrap';
-import MapIndividual from '../Map/MapIndividual'
+// import MapIndividual from '../Map/MapIndividual'
 import AddReview from './AddReview'
 import '../../style.css'
 

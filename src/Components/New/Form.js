@@ -17,14 +17,14 @@ class Form extends React.Component {
 
     thumbUp = () => {
         this.setState({ up: true, clickedUp: !this.state.clickedUp })
-        if (this.state.clickedDown === true){
+        if (this.state.clickedDown){
             this.setState({ clickedDown: false })
         }
     }
 
     thumbDown = () => {
         this.setState({ up: false, clickedDown: !this.state.clickedDown  })
-        if (this.state.clickedUp === true){
+        if (this.state.clickedUp){
             this.setState({ clickedUp: false })
         }
     }

@@ -35,7 +35,7 @@ class App extends Component {
       this.props.history.push('/home')
       API.getBusinesses()
       .then(data => this.setState({ businesses: data }))
-      .then(this.filterBusinesses(this.state.user.city, 'city'))
+     
       
     } 
   }

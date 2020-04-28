@@ -34,7 +34,7 @@ class FilterNav extends React.Component {
 
     return (
         <div>
-        <Navbar color="light" light expand="md">
+        <Navbar className="filterNav" color="light" light expand="md">
           <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 Filter by City
