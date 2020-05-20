@@ -1,5 +1,6 @@
 import React from 'react'
 import API from '../API'
+import { Button } from 'reactstrap';
 import { withRouter, Link } from 'react-router-dom' 
 
 class Form extends React.Component {
@@ -43,13 +44,18 @@ class Form extends React.Component {
         let longitude = this.props.place.geometry.location.lng()
         let name = this.props.place.name
         let places_id = this.props.place.place_id
-        let category = this.props.place.types[0].split('_').join(' ').replace(/\b\w/g, l => l.toUpperCase())
-        
+        let category = this.props.place.types[0].split('_').join(' ').replace(/\b\w/g, l => l.toUpperCase())    
         let country = this.props.place.address_components.find(a => a.types[0] === "country").short_name
         
         if (country === "USA" || country === "US"){
-            let city = this.props.place.address_components.find(a => a.types[0] === "locality").long_name
             let state = this.props.place.address_components.find(a => a.types[0] === "administrative_area_level_1").short_name
+            let city;
+            if (state === 'NY'){
+                city = this.props.place.address_components.find(a => a.types[1] === "sublocality").long_name
+            }
+            else {
+                city = this.props.place.address_components.find(a => a.types[0] === "locality").long_name
+            }
             API.createUSAReview(latitude, longitude, name, places_id, category, city, state, country, this.state.review, this.state.up, this.props.user.id)
             .then(business => this.props.createNewBusiness(business))
         }
@@ -88,8 +94,8 @@ class Form extends React.Component {
             <i className="material-icons grey add-review" onClick={thumbDown}>thumb_down</i>
             }
             </div>
-            <button type="submit" className="btn blue-button">Submit</button>
-            <Link to='/home'><button className="btn btn-outline-secondary">Cancel</button></Link>
+            <Button type="submit" color="primary" className="btn login-button">Submit</Button>
+            <Link to='/home'><Button color="light" className="btn btn-outline-secondary">Cancel</Button></Link>
         </form>
        </div>
 

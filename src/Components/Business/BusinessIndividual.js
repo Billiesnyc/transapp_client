@@ -17,13 +17,13 @@ class BusinessIndividual extends Component {
         reviewForm: false
         };
     }
-    getReviews = () => {
+
+    componentDidMount = () => {
         API.getBusiness(this.props.business.id)
-            .then(data => this.setState({ reviews: data[0], score: data[1] }))
+        .then(data => this.setState({ reviews: data[0], score: data[1] }))
     }
 
     showReviews = () => {
-        this.getReviews();
         return this.state.reviews.map(review => <ReviewItem review={review} key={review.id}/>)
     }
 
@@ -34,7 +34,7 @@ class BusinessIndividual extends Component {
     render(){
         const { user, business } = this.props
         const { showReviews, popReviewForm, getReviews } = this
-        const { score, reviewForm } = this.state
+        const { score, reviewForm, reviews } = this.state
         return(
             <div className="container p-4">
              <div className="row">
@@ -47,9 +47,9 @@ class BusinessIndividual extends Component {
                         <p>Location: {business.city}{business.state ? ", " + business.state : null}, {business.country}</p>
                         <p>Category: {business.category} {business.subcategory}</p>
                         <p>Rating: {score.overall_up} <i className="material-icons green align-bottom p-1 border-right mr-1">thumb_up</i>
-                                {score.overall_down} <i className="material-icons red align-bottom p-1">thumb_down</i></p>
+                        {score.overall_down} <i className="material-icons red align-bottom p-1">thumb_down</i></p>
                     {reviewForm ? null : 
-                        <Button color="primary" className="blue-button" onClick={popReviewForm}>Add Review</Button> 
+                        <Button color="primary" className="login-button" onClick={popReviewForm}>Add Review</Button> 
                         }
                     {reviewForm ? 
                         <AddReview 
@@ -71,7 +71,7 @@ class BusinessIndividual extends Component {
             <div className="row border-top">
                 <div className="col">
                     <h1>Reviews</h1>
-                        {showReviews()}
+                        {reviews ? showReviews() : null}
                 </div>
             </div> 
             </div>

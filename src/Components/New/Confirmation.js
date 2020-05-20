@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Button } from 'reactstrap';
 
 
 class Confirmation extends React.Component {
@@ -11,8 +11,8 @@ class Confirmation extends React.Component {
     return (
        <div>
         <h3>Add a review for {name}?</h3>
-        <button className="btn blue-button mr-2" onClick={addReview}>Yes</button> 
-        <button className="btn blue-button" onClick={cancelReview}>No</button> 
+        <Button color="primary" className="btn login-button mr-2" onClick={addReview}>Yes</Button> 
+        <Button color="light" className="btn btn-outline-secondary" onClick={cancelReview}>No</Button> 
        </div>
     )
   }

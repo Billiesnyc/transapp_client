@@ -49,9 +49,9 @@ class AddReview extends React.Component {
        <h3>Add Review</h3>
         <form onSubmit={handleSubmit}>
             <div className="form-group">
-            <label htmlFor="Review">Review</label>
-            <textarea className="form-control" onChange={handleChange} id="Review" rows="3"></textarea>
-            </div>
+                <label htmlFor="Review">Review</label>
+                    <textarea className="form-control" onChange={handleChange} id="Review" rows="3"></textarea>
+                </div>
             <div className="form-group">
             <label htmlFor="Review">Overall experience</label><br />
             {clickedUp ? 
