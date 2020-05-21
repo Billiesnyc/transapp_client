@@ -4,7 +4,7 @@ import './App.scss';
 import API from './Components/API'
 import LoginForm from './Components/LogIn/LoginForm'
 import SignupForm from './Components/LogIn/SignupForm'
-import New from './Components/New/New'
+import NewReview from './Components/New/CheckLogin'
 import Navbar from './Components/Navbar/Navbar'
 import Home from './Components/Home'
 import Account from './Components/Account/Account'
@@ -121,7 +121,7 @@ class App extends Component {
         <Switch>
         <Route exact path='/login' render={props => <LoginForm {...props} handleSubmit={handleSubmit} />} />
         <Route exact path='/signup' render={props => <SignupForm {...props} handleSignup={handleSignup} />} />
-        <Route exact path='/new' render={props => <New {...props} user={user} createNewBusiness={createNewBusiness}/>} />
+        <Route exact path='/new' render={props => <NewReview {...props} user={user} createNewBusiness={createNewBusiness}/>} />
         <Route exact path='/account' render={props => <Account {...props} user={user} updateUser={updateUser}/>} />
         <Route path='/home' 
           render={props => 

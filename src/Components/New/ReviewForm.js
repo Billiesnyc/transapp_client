@@ -3,7 +3,7 @@ import API from '../API'
 import { Button } from 'reactstrap';
 import { withRouter, Link } from 'react-router-dom' 
 
-class Form extends React.Component {
+class ReviewForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -103,4 +103,4 @@ class Form extends React.Component {
   }
 }
 
-export default withRouter(Form)
+export default withRouter(ReviewForm)

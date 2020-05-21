@@ -1,9 +1,9 @@
 import React from 'react'
 import SearchBox from '../Map/SearchBox'
 import Confirmation from './Confirmation'
-import Form from './Form'
+import ReviewForm from './ReviewForm'
 
-class NewForm extends React.Component {
+class NewReview extends React.Component {
 
   constructor(props) {
     super(props);
@@ -51,7 +51,7 @@ class NewForm extends React.Component {
                     /> 
             : null }
             {form ? 
-                <Form place={place} user={user} createNewBusiness={createNewBusiness}/>
+                <ReviewForm place={place} user={user} createNewBusiness={createNewBusiness}/>
             : null }
          </div>
        </div>
@@ -59,4 +59,4 @@ class NewForm extends React.Component {
   }
 }
 
-export default NewForm
+export default NewReview
