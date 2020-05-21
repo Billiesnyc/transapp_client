@@ -1,7 +1,7 @@
 class API {
     static init () {
      
-      this.baseUrl = 'https://affirm-space.herokuapp.com/'
+      this.baseUrl = 'https://affirm-space.herokuapp.com'
       this.businessURL = this.baseUrl + '/businesses'
       this.reviewsURL = this.baseUrl + '/reviews'
       this.citiesURL = this.baseUrl + '/cities'
