@@ -3,7 +3,7 @@ import API from '../API'
 import ReviewItem from './ReviewItem'
 import { Link } from 'react-router-dom'
 import { Button } from 'reactstrap';
-// import MapIndividual from '../Map/MapIndividual'
+import MapIndividual from '../Map/MapIndividual'
 import AddExistingReview from './AddExistingReview'
 import '../../style.css'
 
@@ -64,13 +64,13 @@ class BusinessIndividual extends Component {
                             /> 
                         : null}
                 </div>
-                {/* <div className="col-4">
+                <div className="col-4">
                     <MapIndividual 
                         lat={business.latitude ? Number(business.latitude) : 15} 
                         long={business.longitude ? Number(business.longitude) : 10} 
-                        place={business.places_id? business.places_id : "ChIJ3RlqFuta04URQmbHMgLij_U"} />
-                    <a href={'https://www.google.com/maps/place/?q=place_id:' + this.state.business.places_id} target="_blank" rel="noopener noreferrer"><button className="btn btn-outline-secondary">View on Google Maps</button></a>
-                </div> */}
+                        place={business.places_id ? business.places_id : "ChIJ3RlqFuta04URQmbHMgLij_U"} />
+                    <a href={'https://www.google.com/maps/place/?q=place_id:' + business.places_id} target="_blank" rel="noopener noreferrer"><button className="btn btn-outline-secondary">View on Google Maps</button></a>
+                </div>
             </div>
             <div className="row border-top">
                 <div className="col">

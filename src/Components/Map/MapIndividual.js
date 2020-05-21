@@ -4,12 +4,18 @@ import Pin from './pin3.png'
 
 const PinComp = () => <div><img src={Pin} width="30 em" alt="Map Marker"></img></div>;
 
+function createMapOptions() {
+  return {
+    gestureHandling: 'none',
+    zoomControl: false
+  }
+}
+
 class MapIndividual extends React.Component {
     
     static defaultProps = {
         zoom: 15
-      };
-    
+      };  
 
   render () {
   
@@ -19,6 +25,7 @@ class MapIndividual extends React.Component {
           bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY }}
           defaultCenter={{"lat": this.props.lat, "lng": this.props.long}}
           defaultZoom={this.props.zoom}
+          options={createMapOptions}
         >
         <PinComp
             lat={this.props.lat}
