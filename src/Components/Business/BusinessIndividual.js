@@ -4,7 +4,7 @@ import ReviewItem from './ReviewItem'
 import { Link } from 'react-router-dom'
 import { Button } from 'reactstrap';
 // import MapIndividual from '../Map/MapIndividual'
-import AddReview from './AddReview'
+import AddExistingReview from './AddExistingReview'
 import '../../style.css'
 
 class BusinessIndividual extends Component {
@@ -31,6 +31,10 @@ class BusinessIndividual extends Component {
         this.setState({ reviewForm: !this.state.reviewForm })
     }
 
+    getReviews = (review) => {
+        this.setState({ reviews: [review, ...this.state.reviews] })
+    }
+
     render(){
         const { user, business } = this.props
         const { showReviews, popReviewForm, getReviews } = this
@@ -52,7 +56,7 @@ class BusinessIndividual extends Component {
                         <Button color="primary" className="login-button" onClick={popReviewForm}>Add Review</Button> 
                         }
                     {reviewForm ? 
-                        <AddReview 
+                        <AddExistingReview 
                             popReviewForm={popReviewForm}
                             business={business}
                             user={user}

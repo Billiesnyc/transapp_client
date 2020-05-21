@@ -24,7 +24,6 @@ class NewForm extends React.Component {
 
   cancelReview = () => {
     this.setState({ popout: false, place: "" })
-    
   }
 
   render () {

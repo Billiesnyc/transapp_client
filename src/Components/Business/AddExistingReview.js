@@ -36,8 +36,8 @@ class AddReview extends React.Component {
    handleSubmit = (e) => {
         e.preventDefault()
         API.createOnlyReview(this.props.business.id, this.state.review, this.state.up, this.props.user.id)
+        .then(data => this.props.getReviews(data))
         .then(this.props.popReviewForm)
-        .then(this.props.getReviews)
    }    
   
   render () {
@@ -65,7 +65,7 @@ class AddReview extends React.Component {
             <i className="material-icons grey add-review" onClick={thumbDown}>thumb_down</i>
             }
             </div>
-            <Button color="primary" type="submit" className="blue-button">Submit</Button>
+            <Button type="submit" color="primary" className="btn login-button">Submit</Button>
             <Button color="light" onClick={popReviewForm}>Cancel</Button>
         </form>
        </div>
